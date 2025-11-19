@@ -299,12 +299,10 @@
                             alt="Collagen Mask+ 1 brush FREE"
                             class="w-full h-full object-cover object-top">
                         <video id="mainVideo" class="w-full h-full object-cover object-top hidden" controls>
-                            <source src="" type="video/mp4">
+                            <source src="img/Vidéo 2025-11-19 à 12.21.04_256bd93e.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <!---<div class="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs" id="mediaIndicator">
-                           
-                        </div>---->
+                        
                     </div>
                 </div>
 
@@ -318,6 +316,19 @@
                             alt="Product view 1"
                             class="w-full h-full object-cover object-top">
                     </div>
+
+                    <div class="flex-shrink-0 w-20 h-20 bg-white rounded-lg border shadow-sm overflow-hidden cursor-pointer gallery-item" 
+                         data-type="video" 
+                         data-src="https://sample-videos.com/zip/10/mp4/480/SampleVideo_360x240_1mb.mp4" 
+                         data-index="5">
+                        <div class="w-full h-full bg-gradient-to-br from-pink-100 to-purple-100 flex items-center justify-center relative">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-play-circle-fill text-2xl text-gray-600"></i>
+                            </div>
+                            <div class="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-1 rounded"></div>
+                        </div>
+                    </div>
+
                     <div class="flex-shrink-0 w-20 h-20 bg-white rounded-lg border shadow-sm overflow-hidden cursor-pointer gallery-item" 
                          data-type="image" 
                          data-src="img/img2.jpg" 
@@ -350,17 +361,7 @@
                             alt="How to use"
                             class="w-full h-full object-cover object-top">
                     </div>
-                    <div class="flex-shrink-0 w-20 h-20 bg-white rounded-lg border shadow-sm overflow-hidden cursor-pointer gallery-item" 
-                         data-type="video" 
-                         data-src="img/Vidéo 2025-11-19 à 12.21.04_256bd93e.mp4" 
-                         data-index="5">
-                        <div class="w-full h-full bg-gradient-to-br from-pink-100 to-purple-100 flex items-center justify-center relative">
-                            <div class="w-8 h-8 flex items-center justify-center">
-                                <i class="ri-play-circle-fill text-2xl text-gray-600"></i>
-                            </div>
-                            <div class="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-1 rounded">Video</div>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <!-- Desktop Only: See Our Product Results Section -->
@@ -674,7 +675,7 @@
                                 <li>Apply the mask evenly using the included brush</li>
                                 <li>Leave on for 15-20 minutes</li>
                                 <li>Sleep with mask on</li>
-                                <li>After waking up the next morning remove, rinse with clean water</li>
+                                <li>After waking up the next remove, rinse with clean water</li>
                                 <li>Use every night before sleep for best results</li>
                             </ol>
                         </div>
@@ -1077,27 +1078,31 @@
         });
     
         // Quantity and price functionality
-const quantityElement = document.getElementById('quantity');
-const decreaseButton = document.getElementById('decreaseQty');
-const increaseButton = document.getElementById('increaseQty');
-const unitPrice = 249;
-const totalPriceElement = document.getElementById('totalPrice');
-const orderButtonText = document.getElementById('orderButtonText');
-
-function updateTotalPrice() {
-    const quantity = parseInt(quantityElement.textContent);
-    let totalPrice;
-    
-    // Special pricing: 200 cedis for 2 or more items
-    if (quantity >= 2) {
-        totalPrice = 200 * quantity;
-    } else {
-        totalPrice = unitPrice * quantity;
-    }
-    
-    totalPriceElement.textContent = `GH₵${totalPrice}`;
-    orderButtonText.textContent = `ORDER NOW - GH₵${totalPrice}`;
-}
+        const quantityElement = document.getElementById('quantity');
+        const decreaseButton = document.getElementById('decreaseQty');
+        const increaseButton = document.getElementById('increaseQty');
+        const unitPriceElement = document.getElementById('unitPrice');
+        const totalPriceElement = document.getElementById('totalPrice');
+        const orderButtonText = document.getElementById('orderButtonText');
+        
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityElement.textContent);
+            let unitPrice;
+            let totalPrice;
+            
+            // Dynamic pricing: 249 for 1 item, 200 for 2+ items
+            if (quantity === 1) {
+                unitPrice = 249;
+                unitPriceElement.textContent = 'GH₵249';
+            } else {
+                unitPrice = 200;
+                unitPriceElement.textContent = 'GH₵200';
+            }
+            
+            totalPrice = unitPrice * quantity;
+            totalPriceElement.textContent = `GH₵${totalPrice}`;
+            orderButtonText.textContent = `ORDER NOW - GH₵${totalPrice}`;
+        }
         
         decreaseButton.addEventListener('click', function() {
             let quantity = parseInt(quantityElement.textContent);
@@ -1235,20 +1240,20 @@ function updateTotalPrice() {
             modal.classList.add('hidden');
         });
         
-       // Apply deal when CTA is clicked
-applyDeal.addEventListener('click', function() {
-    // Update quantity to 2 - this will automatically trigger the 200 cedis pricing
-    document.getElementById('quantity').textContent = '2';
-    
-    // Let the updateTotalPrice function handle the calculation
-    updateTotalPrice();
-    
-    // Close modal
-    modal.classList.add('hidden');
-    
-    // Show confirmation message
-    swal("Deal Applied!", "You've successfully added 2 masks to your order at the special Black Friday price!", "success");
-});
+        // Apply deal when CTA is clicked
+        applyDeal.addEventListener('click', function() {
+            // Update quantity to 2 - this will automatically trigger the 200 cedis pricing
+            document.getElementById('quantity').textContent = '2';
+            
+            // Let the updateTotalPrice function handle the calculation
+            updateTotalPrice();
+            
+            // Close modal
+            modal.classList.add('hidden');
+            
+            // Show confirmation message
+            swal("Deal Applied!", "You've successfully added 2 masks to your order at the special Black Friday price!", "success");
+        });
         
         // Countdown timer for modal
         function startModalCountdown() {
