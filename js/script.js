@@ -98,13 +98,13 @@
         updateCountdown();
 
         // Form submission - WITH BETTER LOGGING
-        const scriptURL = "https://script.google.com/macros/s/AKfycbwtgZ1eTfYW_9PQFYPKcw5DVZYoEBZffJuAtf9vbGUlLH1jr0lfVIoY126-8fBSjmsUm/exec";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwtgZ1eTfYW_9PQFYPKcw5DVZYoEBZffJuAtf9vbGUlLH1jr0lfVIoY126-8fBSjmsUmA/exec";
         const form = document.querySelector("form");
 
         form.addEventListener("submit", (e) => {
             e.preventDefault();
             
-            // Show loading state A
+            // Show loading state 
             const submitButton = form.querySelector('button[type="submit"]');
             const originalText = submitButton.innerHTML;
             submitButton.innerHTML = 'Processing...';
@@ -164,9 +164,9 @@
     
         // Initialize total price on page load
         updateTotalPrice();
-    </script>
+   
 
-<script>
+
     // Black Friday Modal Functionality
     document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('blackFridayModal');
